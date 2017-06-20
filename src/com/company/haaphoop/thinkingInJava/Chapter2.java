@@ -1,15 +1,30 @@
 package com.company.haaphoop.thinkingInJava;
 
+import java.util.Date;
+
 /**
- * Created by daishuli on 2017/6/19.
+ *
+ * @Description:
+ * @Author: ${USER}
+ * @Date: Create in ${DATE} ${TIME}
+ * @Modified:
  */
 public class Chapter2 {
+    /**
+     *
+     * @Description:
+     * @Author: thinkpad
+     * @Date: Create in 2017/6/20 21:39
+     * @Modified:
+     */
     public static void main(String[] args) {
-        // write your code here
+        Chapter2 chapter2 = new Chapter2();
+        String ss = "";
         String s = "";
         // 字符串可以用带引号的文本初始化
-        String t = new String("asdf");
+        String t = new String("ada");
         System.out.println(t);
+        System.out.println(s + "" + ss);
         /*  2.2 必须由你创建所有对象
             2.2.1 存储到什么地方
             1 寄存器 最快的存储区 位于处理器内部 寄存器数量有限
@@ -30,7 +45,18 @@ public class Chapter2 {
             对象的作用域
             String s = new String("a string");
             引用s在作用于结束时就消失了，然而s指向的String对象仍继续占据内存空间
+
+            static 关键字
+
         */
+
+        System.out.println(new Date());
+        System.getProperties().list(System.out);
+        System.out.println(System.getProperty("user.name"));
+        System.out.println(System.getProperty("java.library.path"));
+
+
+
 
 
     }
@@ -38,6 +64,9 @@ public class Chapter2 {
 
 class DataOnly {
     int i;double d;boolean b;
-
-    void print(){return;// return 作用是退出方法}
+    static int a;
+    void print(){
+        this.a++;
+        return;// return 作用是退出方法
+         }
 }
