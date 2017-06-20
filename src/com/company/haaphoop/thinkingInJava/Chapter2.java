@@ -20,7 +20,24 @@ public class Chapter2 {
             4 常量存储 常量值通常直接存放在程序代码内部，因为常量永远不会被改变
             5 非RAM存储 如果数据完全存活于程序之外，那么它可以不受程序任何控制，在程序没有运行时也可以存在。其中，两个基本
                 的例子是流对象和持久化对象。
+            2.2.2 特例 基本类型
+            基本类型存储与堆栈中，高效 每种类型占存储空间大小：boolean 不指定具体大小;byte * 8;char * 16 short * 16; int * 32 float * 32; double * 64 long * 64; 包装器类型：Boolean Character Integer Byte Short Float Double Long
+            基本类型具有包装器类，使得可以在堆中创建一个非基本对象，用来表示对应得基本对象
+            Java SE5 得自动包装功能会自动得将基本类型转换为包装器类型；
+            高精度数字
+            BigInteger 支持任意精度得整数 BigDecimal 支持任意精度得定点数 对应int float 牺牲速度换取精度
+
+            对象的作用域
+            String s = new String("a string");
+            引用s在作用于结束时就消失了，然而s指向的String对象仍继续占据内存空间
         */
 
+
     }
+}
+
+class DataOnly {
+    int i;double d;boolean b;
+
+    void print(){return;// return 作用是退出方法}
 }
