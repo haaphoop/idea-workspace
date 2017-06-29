@@ -51,13 +51,289 @@ public class Chapter9 {
     *        接口最吸引人的原因之一就是允许同一个接口具有多个不同的实现。在简单的情况中，它的体现形式通常是一个接受接口类型的方法
     *        而该接口的实现和向该方法传递的对象则取决于方法的使用者。因此接口的一种常见用法就是前面提到的策略设计模式，此时，你编写一个执行
     *        某些操作的方法，而该方法将接受一个同样是你指定的接口。你主要是要声明，“你可以用任何你想要的对象来调用我的方法，只要你的对象遵循
-    *        我的接口。”
+    *        我的接口。” Readable接口只要求实现read()方法，在read()方法内部，将输入内容添加到CharBuffer参数中，或者在没有任何输入时返回-1。
+    *        假设你有一个还未实现Readable接口的类，怎样才能让Scanner作用于它呢？因为在这种方式中，我们可以在任何现有类之上添加新的接口，所以这意味着让方法接收接口类型，是一种让任何类都可以对该方法进行适配的方式。这
+    *        就是使用接口而不是类的强大之处。
+    *
+    *9.7 接口中的域
+    *        因为放入接口中的任何域都自动是static和final的，所以接口就成为了一种很便捷的用来创建常量组的工具。
+    *        9.7.1 初始化接口中的域
+    *               接口中的域不能是“空final”，但是可以被非常量表达式初始化。例如使用Random进行初始化。既然域是static，它们就可以在类被
+    *               第一次加载时初始化，这发生在任何域首次被访问时。当然这些域不是接口的一部分，它们的值被存储在该接口的静态存储区域内。
+    *
+    *9.8 嵌套接口
+    *       接口可以嵌套在类或其他接口中，这展示了许多其他特性。
+    *
+    * 9.9 接口工厂
+    *       接口是实现多重继承的途径，而生成遵循某个接口的对象的典型方式就是工厂方法模式。这与直接调用构造器不同，我们在工厂对象上调用的是
+    *       创建方法，而该工厂将生成接口的某个实现的对象。理论上，通过这种方式，我们的代码将完全与接口的实现分离，这就使得我们可以透明地将某个
+    *       实现替换为另一个实现。
+    *
+    * 9.10 总结
+    *       “确定接口是理想选择，因而应该总是选择接口而不是具体的类。” 这其实是一种引诱。当然，对于创建类，几乎在任何时刻，都可以替代为创建
+    *       一个接口和工厂。许多人都掉进了这种诱惑的陷阱，只要有可能就去创建接口和工厂。这种逻辑看起来好像是因为需要使用不同的具体实现，因此
+    *       总是应该添加这种抽象性。这实际上已经变成了一种草率的设计优化。任何抽象性都应该是应真正的需求而产生的。当必需时，你应该重构接口而不是
+    *       到处添加额外级别的间接性，并由此带来的复杂性。恰当的原则应该是优先选择类而不是接口。
     *
     *
-    *
-    *
-    *
-    *
+    * */
+}
+
+interface Service{
+    void method1();
+    void method2();
+}
+
+interface ServiceFactory{
+    Service getService();
+}
+
+class Implementation1 implements Service {
+    Implementation1(){}
+
+    @Override
+    public void method1() {
+        System.out.println("Implementation1 method1");
+    }
+
+    @Override
+    public void method2() {
+        System.out.println("Implementation1 method2");
+    }
+}
+
+class Implementation1Factory implements ServiceFactory {
+    @Override
+    public Service getService() {
+        return new Implementation1();
+    }
+}
+
+class Implementation2 implements Service {
+    Implementation2(){}
+
+    @Override
+    public void method1() {
+        System.out.println("Implementation2 method1");
+    }
+
+    @Override
+    public void method2() {
+        System.out.println("Implementation2 method2");
+    }
+}
+
+class Implementation2Factory implements ServiceFactory {
+    @Override
+    public Service getService() {
+        return new Implementation2();
+    }
+}
+
+class Factories {
+    public static void serviceConsumer(ServiceFactory serviceFactory){
+        Service service = serviceFactory.getService();
+        service.method1();
+        service.method2();
+    }
+
+    public static void main(String[] args) {
+        serviceConsumer(new Implementation1Factory());
+        serviceConsumer(new Implementation2Factory());
+    }
+}
+
+interface Game{boolean move();}
+
+interface GameFactory{Game getGame();}
+
+class Checkers implements Game {
+    private int moves = 0;
+    private static final int MOVE = 3;
+
+    @Override
+    public boolean move() {
+
+        System.out.println("Checkers move " + moves);
+        return ++moves != MOVE;
+    }
+}
+
+class CheckersFactory implements GameFactory {
+    @Override
+    public Game getGame() {
+        return new Checkers();
+    }
+}
+
+class Chess implements Game {
+    private int moves = 0;
+    private static final int MOVE = 4;
+
+    @Override
+    public boolean move() {
+        System.out.println("Chess move " + moves);
+        return ++moves != MOVE;
+    }
+}
+
+class ChessFactory implements GameFactory {
+    @Override
+    public Game getGame() {
+        return new Chess();
+    }
+}
+
+class Games {
+    public static void playGame(GameFactory gameFactory){
+        Game game = gameFactory.getGame();
+        while (game.move()){
+
+        }
+    }
+
+    public static void main(String[] args) {
+        playGame(new CheckersFactory());
+        playGame(new ChessFactory());
+
+    }
+}
+
+
+
+
+
+
+
+
+class A {
+    interface B {
+        void f();
+    }
+
+    public class BImpl implements B{
+        public void f(){}
+    }
+
+    private class BImpl2 implements B{
+        public void f(){}
+    }
+
+    interface C {
+        void f();
+    }
+
+    public class CImpl implements C{
+        public void f(){}
+    }
+
+    private class CImpl2 implements C{
+        public void f(){}
+    }
+
+    interface D {
+        void f();
+    }
+
+    public class DImpl implements D{
+        public void f(){}
+    }
+
+    private class DImpl2 implements D{
+        public void f(){}
+    }
+
+    public D getD(){
+        return new DImpl2();
+    }
+
+    private D dRef;
+
+    public void receiveD(D d){dRef = d;dRef.f();}
+}
+
+interface E {
+    interface G {void f();}
+    public interface H{void f();}
+
+    void g();
+}
+
+class NestingInterfaces {
+    public class BImpl implements A.B {
+        public void f(){}
+    }
+
+    class CImpl implements A.C {
+        public void f(){}
+    }
+
+    class EImpl implements E {
+        public void g(){}
+    }
+
+    class EGImpl implements E.G {
+        public void f(){}
+    }
+
+    class EImpl2 implements E {
+        public void g(){}
+        class EG implements E.G {
+            public void f(){}
+        }
+    }
+
+    public static void main(String[] args) {
+        A a = new A();
+        A a2 = new A();
+        a2.receiveD(a.getD());
+    }
+}
+
+class RandomDoubles {
+    private static Random random = new Random(47);
+    public double next(){return random.nextDouble();}
+
+    public static void main(String[] args) {
+        RandomDoubles randomDoubles = new RandomDoubles();
+        for (int i = 0; i < 7; i++) {
+            System.out.println(randomDoubles.next());
+        }
+    }
+}
+/*
+*
+* 再次使用了适配器模式，被适配的类可以通过继承和实现Readable接口来创建。因此，通过使用interface关键字提供的伪多重继承机制，我们可以生成既是RandomDoubles
+* 又是Readable的类。
+* */
+
+class AdapterRandomDoubles extends RandomDoubles implements Readable {
+    private int count;
+    public AdapterRandomDoubles(int count){
+        this.count = count;
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+
+        if (count-- == 0 ) {
+            return -1;
+        }
+
+        String result = Double.toString(next()) + " ";
+        cb.append(result);
+        return result.length();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(new AdapterRandomDoubles(7));
+        while (scanner.hasNextDouble())
+            System.out.println(scanner.nextDouble() + " ");
+    }
+
+    /*
+    * 因为在这种方式中，我们可以在任何现有类之上添加新的接口，所以这意味着让方法接收接口类型，是一种让任何类都可以对该方法进行适配的方式。这
+    * 就是使用接口而不是类的强大之处。
     * */
 }
 
