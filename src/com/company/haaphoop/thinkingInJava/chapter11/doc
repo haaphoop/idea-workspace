@@ -49,3 +49,5 @@ Collection接口概括了序列的概念----一种存放一组对象的方式。
 在java.util包中的Arrays和Collections类中都有很多实用的方法，可以在一个Collection中添加一组元素。Arrays.asList()
 方法接受一个数组或是一个用逗号分割的元素列表（使用可变参数），并将其转换为一个list对象。Collections.addAll()
 方法接受一个Collection对象，以及一个数组或是一个用逗号分割的列表，将元素添加到Collection中。
+
+11.4 容器的打印
