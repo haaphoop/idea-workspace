@@ -34,3 +34,35 @@ Java SE5引入的format方法可用于PrintStream或PrintWriter对象，其中�
 13.5.3 Formatter类
 在Java中，所有新的格式化功能都由java.util.Formatter类处理。可以将Formatter看做一个翻译器，它将你的格式化字符串与数据翻译成需要的结果。
 当你创建一个Formatter对象的时候，需要向其构造器传递一些信息，告诉它最终的结果将向哪里输出：
+
+13.5.4 格式化说明符
+在插入数据时，如果想要控制空格与对齐，你需要更精细复杂的格式修饰符。以下是其抽象的语法：
+ %[argument_index$][flags][width][.percision]vonversion
+最常见的应用是控制一个域的最小尺寸，这可以通过制定width来实现。Formatter对象通过在必要时添加空格，
+来确保一个域至少达到某个长度。在默认的情况下，数据是右对齐，不过可以通过使用"-"标志来改变对象方向。
+
+13.5.5 Formatter转换
+
+13.5.6 String.format()
+String.format()是一个static方法，它接受与Formatter.format()方法一样的参数，但返回一个String对象。
+其实在String.format()内部，它也是创建一个Formatter对象，然后将你传入的参数转给该Formatter。
+
+13.6 正则表达式
+在Java中，字符串操作主要集中于String、StringBuffer和StringTokenizer类。与正则表达式相比较，它们只能提供
+相当简单的功能。
+正则表达式是一种强大而灵活的文本处理工具。使用正则表达式，我们能够以编程的方式，构造复杂的文本模式，并对输入的字符串
+进行搜索。
+
+String.split()还有一个重载版本，它允许你限制字符串分割的次数。
+String类自带的最后一个正则表达式工具时"替换"。你可以只替换正则表达式第一个匹配的子串，或是替换所有匹配的地方。
+
+13.6.2 创建正则表达式
+
+13.6.8 正则表达式与Java I/O
+如何应用正则表达式在一个文件中进行搜索匹配操作。JGrep.java有两个参数：文件名以及要匹配的正则表达式。输出的是有匹配的部分以及匹配部分在行中的位置。
+
+13.7 扫描输入
+
+13.8 StringTokenizer
+在Java引入正则表达式和Scanner类之前，分割字符串的唯一方法是使用StringTokenizer来分词。不过，现在有了正则表达式和Scanner，我们可以使用
+更加简单、更加简洁的方式来完成同样的工作了。下面的例子中，我们将StringTokenizer与另两种技术做了一个比较：
