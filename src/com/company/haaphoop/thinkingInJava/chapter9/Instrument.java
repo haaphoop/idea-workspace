@@ -5,14 +5,7 @@ package com.company.haaphoop.thinkingInJava.chapter9;
  */
 public abstract class Instrument {
     private int i; // Storage allocated for each
-    public abstract void play(Note note);
+    public abstract void play();
     public String what() {return "Instrument";}
     public abstract void adjust();
-}
-
-class Wind extends Instrument {
-    @Override
-    public void play(Note note) {
-        System.out.println("Wind.play()" + note);
-    }
 }
