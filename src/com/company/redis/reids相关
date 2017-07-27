@@ -1,0 +1,5 @@
+1 redis启动时需指定配置文件  ./redis-server /opt/redis-3.2.3/redis.conf
+2 Linux下redis配置成服务：
+3 查看linux下所有服务：chkconfig --list
+4 查看服务状态：service ntpd status
+5 生产环境需要限制redis访问：conf配置文件中设置bing 127.0.0.1，并重启生效
