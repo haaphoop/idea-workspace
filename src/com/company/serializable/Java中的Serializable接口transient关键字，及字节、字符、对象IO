@@ -1,0 +1,12 @@
+1 什么是序列化和反序列化
+Serialization是一种将对象转化为字节流的过程；deserialization是将字节流恢复为对象的过程。
+2 什么情况下需要序列化
+ a)当你想把内存中的对象保存到一个文件中或者数据库中时候；
+ b)当你想用套接字再网络上传送对象的时候；
+ c)当你想通过RMI传输对象的时候；
+3 如何实现序列化
+将需要序列化的类实现Serializable接口就可以了，Serializable接口和Cloneable接口一样，不包含任何方法，是个标记接口。
+4 代码分析 ---> Solution.java
+
+5 序列化前和序列化后的对象的关系
+http://www.cnblogs.com/tonyluis/p/5779187.html
