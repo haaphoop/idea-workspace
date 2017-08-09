@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by daishuli on 2017/8/8.
  */
-public abstract class BeanUtil {
+public class BeanUtil {
     @SuppressWarnings("unchecked")
     public static <T> T cloneTo(T src) {
         ByteArrayOutputStream memoryBuffer = new ByteArrayOutputStream();
@@ -41,4 +41,7 @@ public abstract class BeanUtil {
         return dist;
     }
 
+    public static void main(String[] args) {
+
+    }
 }

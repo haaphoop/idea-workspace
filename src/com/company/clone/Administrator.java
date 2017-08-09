@@ -48,10 +48,10 @@ public class Administrator implements Cloneable, Serializable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        /*Administrator administrator = (Administrator)super.clone();
+        Administrator administrator = (Administrator)super.clone();
         administrator.user = (User)administrator.user.clone();
-        return administrator;*/
-        return super.clone();
+        return administrator;
+        //return super.clone();
     }
 
     @Override
