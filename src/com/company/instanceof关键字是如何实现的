@@ -1,0 +1,33 @@
+Java instanceof 关键字是如何实现的？
+HotSpot VM具体使用了长度为8的缓存数组，记录某个类从继承深度0到7的超类。HotSpot把类继承深度在7
+以内的超类叫做“主要超类型（primary super）,把所有其他超类型（接口、数组相关以及超过深度7的超类）叫做次要超
+类型(secondary super)”.
+对主要超类型的子类型判断不需要像Kaffe或JamVM那样沿着super链做遍历，而是直接就能判断子类型关系是否
+成立。这样，类的继承深度对HotSpot VM做子类型判断的性能影响就变得很小了。
+对次要超类型，则是让每个类型把自己的次要超类型混在一起记录在一个数组里，要检查的时候就线性遍历
+这个数组。留意到这里把接口类型、数组类型之类的子类型关系都直接记录在同一个数组里了，只要在最初初始化secondary_super数组
+时就分情况填好了，而不用像Kaffe、Jam VM那样每次做instanceof 运算时都分开处理这些情况。
+
+举例：
+Apple<Fruit < Plant < Object
+并且以Object为继承深度0，那么对于Apple类来说，它的主要超类型就有：
+0：Object
+1:Plant
+2：Fruit
+3:Apple
+这个信息就直接记录在Apple类的primary_supers数组里。Fruit、Plant等类同理。
+如果有这样的代码：
+Object f = new Apple();
+boolean result = f instanceof Plant;
+
+也就是变量f实际指向一个Apple实例，而我们要问这个对象是否是Plant的实例。
+可以知道f的实际类型时Apple；要测试的Plant类的继承深度是1，拿Apple类里继承深度为1的主要超类型来看是Plant,
+马上就能得出结论是true;
+这样就不需要顺着Apple的继承链遍历过去一个个去看是否跟Plant相等了。
+
+字节码
+instanceof indexbyte1 indexbyte2
+执行时，objectref出栈， indexbyte1 indexbyte2构建一个指向当前类运行时常量池的索引值。为一个类、接口、数组类型
+的符号引用
+如果objectref为null,那么instanceof指令将int 0 推入栈
+如果objectref可以转换为这个类，则1入栈，否则0入栈。
