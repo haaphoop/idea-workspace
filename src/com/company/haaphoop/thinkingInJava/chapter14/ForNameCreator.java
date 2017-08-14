@@ -113,12 +113,12 @@ class Individual {
     public Individual(String name){System.out.println(name);}
 }
 
-class Person extends Individual {
+class Person extends Individual{
     public Person() {super();}
     public Person(String name) {super(name);}
 }
 
-class Pet extends Individual {
+class Pet  extends Individual{
     public Pet() {super();}
     public Pet(String name) {super(name);}
 }
