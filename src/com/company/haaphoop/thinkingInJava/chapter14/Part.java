@@ -8,6 +8,11 @@ import java.util.Random;
 *
 * 基类Part包含一个工厂对象的列表。对于应这个由createRandom()方法产生的类型，它们的工厂
 * 都被添加到了partFactories List中，从而被注册到了基类中。
+* 并非所有在继承结构中的类都应该被实例化，在本例中，Filter和Belt只是分类标识，因此你不应该创建它们的实例，而只应该创建它们的
+* 子类的实例。如果某个类应该由createRandom()方法创建，那么它就包含一个内部Factory类。如例所示，重用名字Factory的唯一方式
+* 就是限定Factory。尽管可以使用Collections.addAll()来向列表中添加工厂，但是这样做编译器就会表达它的不满，抛出一条
+* 有关"创建泛型数组"（这被认为是不可能的）。createRandom()
+* 方法从partFactories中随机地选取一个工厂对象，然后调用其cteate()方法，从而产生一个新的Part。
 * */
 public class Part {
     @Override
