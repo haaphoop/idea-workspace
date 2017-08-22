@@ -57,3 +57,19 @@ java泛型的核心概念：告诉编译器想使用什么类型，然后编译�
 
 15.4.6 一个Set实用工具
     作为泛型方法的另一个示例，我们看看如何用Set来表达数学中的关系式。通过使用泛型方法，可以很方便地做到这一点，而且可以应用于多种类型：Sets.java
+
+15.5 匿名内部类
+泛型还可以应用于内部类以及匿名内部类。
+下面的示例使用匿名内部类实现了Generator接口:Customer.java
+
+15.6 构建复杂模型
+    泛型的一个重要好处使能够简单而安全地创建复杂的模型。例如，我们可以很容易地创建List元祖：TupleList.java
+
+15.7 擦除得神秘之处
+    当你开始更深入地专研泛型时，会发现有大量得东西初看起来是没有意义得。例如，尽管可以声明ArrayList
+    .class，但是不能声明Arraylist<Integer>.class。请考虑下面得情况：ErasedTypeEquivalence.java
+    ArrayList<String>和ArrayList<Integer
+    >很容易被认为是不同得类型。不同得类型在行为方面肯定不同，例如，如果尝试着将一个Integer放入ArrayList<String>,
+    所得到得行为（将失败）与把一个Integer放入ArrayList<Integer
+    >（将成功）所得到得行为完全不同。但是上面得程序会认为它们是相同得类型。
+    下面得示例是对这个谜题得一个补充：LostInformation.java
