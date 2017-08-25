@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://F:/httpClient/httpasyncclient-conn-mgmt-redesign" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpasyncclient-conn-mgmt-redesign/httpasyncclient" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient-cache" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient-osgi" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/fluent-hc" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/httpclient" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/httpclient-cache" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/httpclient-osgi" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/httpclient-win" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-4.5.3/httpmime" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5-cache" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5-fluent" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5-osgi" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5-testing" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-client-master/httpclient5-win" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-4.4.6" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-4.4.6/httpcore" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-4.4.6/httpcore-ab" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-4.4.6/httpcore-nio" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-4.4.6/httpcore-osgi" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master/httpcore5" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master/httpcore5-ab" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master/httpcore5-h2" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master/httpcore5-osgi" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-core-master/httpcore5-testing" charset="UTF-8" />
+    <file url="file://F:/httpClient/httpcomponents-parent-master" charset="UTF-8" />
+  </component>
 </project>
