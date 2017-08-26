@@ -76,3 +76,8 @@ Java中有大量其他得方式可以持有对象，那么到底是什么使数�
 16.7.1 复制数组
         Java标准类库提供有static方法System.arraycopy()，用它复制数组比用for循环复制要快很多。System.arraycopy()
     针对所有类型做了重载。下面的例子就是用来处理int数组的：CopyingArrays.java
+
+16.7.2 数组的比较
+    Arrays类提供了重载后的equals()方法，用来比较整个数组。同样，此方法针对所有基本类型与Object都做了重载。数组相等的条件
+是元素个数必须相等，并且对应位置的元素也相等，这可以通过对每一个元素使用equals()作比较来判断。（对于基本类型，需要使用基本类型的包装器equals()
+方法，例如，对于int类型使用Integer.equals()作比较）见例：ComparingArrays.java

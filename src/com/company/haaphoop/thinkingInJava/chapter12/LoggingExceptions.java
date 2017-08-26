@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @Modified:
  */
 public class LoggingExceptions {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         try {
             throw new LoggingException();
         } catch (LoggingException e) {
@@ -23,14 +23,14 @@ public class LoggingExceptions {
         } catch (LoggingException e) {
             System.err.println("Caught " + e);
         }
-    }
+    }*/
 }
 
-class LoggingException extends Exception {
+/*class LoggingException extends Exception {
     private static Logger logger = Logger.getLogger("LoggingException");
     public LoggingException() {
-        StringWriter stringWriter = new StringWriter();
+        *//*StringWriter stringWriter = new StringWriter();
         printStackTrace(new PrintWriter(stringWriter));
-        logger.severe(stringWriter.toString());
+        logger.severe(stringWriter.toString());*//*
     }
-}
+}*/
