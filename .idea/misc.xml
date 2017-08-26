@@ -38,14 +38,65 @@
       <property name="caretWidth" class="java.lang.Integer" />
     </properties>
   </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Osmorc" url="file://F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient-osgi" />
+    <file type="Osmorc" url="file://F:/httpClient/httpcomponents-client-4.5.3/httpclient-osgi" />
+    <file type="Osmorc" url="file://F:/httpClient/httpcomponents-client-master/httpclient5-osgi" />
+    <file type="Osmorc" url="file://F:/httpClient/httpcomponents-core-4.4.6/httpcore-osgi" />
+    <file type="Osmorc" url="file://F:/httpClient/httpcomponents-core-master/httpcore5-osgi" />
   </component>
   <component name="IdProvider" IDEtalkID="29E8F68A97ADAE5E8F561532AD9C3484" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/pom.xml" />
+        <option value="F:/httpClient/httpasyncclient-conn-mgmt-redesign/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="F:/httpClient/httpasyncclient-conn-mgmt-redesign/httpasyncclient/pom.xml" />
+        <option value="F:/httpClient/httpasyncclient-conn-mgmt-redesign/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient-cache/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient-osgi/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/httpasyncclient/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-asyncclient-4.1.3-src/httpcomponents-asyncclient-4.1.3/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/fluent-hc/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/httpclient-cache/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/httpclient-osgi/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/httpclient-win/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/httpclient/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/httpmime/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-4.5.3/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5-cache/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5-fluent/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5-osgi/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5-testing/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5-win/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/httpclient5/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-client-master/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/httpcore-ab/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/httpcore-nio/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/httpcore-osgi/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/httpcore/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-4.4.6/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/httpcore5-ab/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/httpcore5-h2/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/httpcore5-osgi/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/httpcore5-testing/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/httpcore5/pom.xml" />
+        <option value="F:/httpClient/httpcomponents-core-master/pom.xml" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectKey">
     <option name="state" value="project://e2804f05-5315-4fc6-a121-c522a6c26470" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
