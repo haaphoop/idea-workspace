@@ -56,3 +56,23 @@ Java中有大量其他得方式可以持有对象，那么到底是什么使数�
      首先给出的是可以用于所有基本类型的包装器类型，以及String类型的最基本的计数器生成器集合。这些生成器类都嵌套在CountingGenerator
  类中，从而使得它们能够使用与所要生成的对象类型相同的名字。例如，创建Integer对象的生成器可以通过表达式new CountingGenerator
  .Integer()来创建：CountingGenerator.java
+
+16.6.3从Generator中创建数组
+    为了接收Generator并产生数组，我们需要两个转换工具。第一个工具使用任意的Generator来产生Object
+子类型的数组。为了处理基本类型，第二个工具接收任意基本类型的包装器类型数组，并产生相应的基本类型数组。
+    第一个工具有两种选项，并由重载的静态方法array()
+    来表示。该方法的第一个版本接收一个已有的数组，并使用某个Generator来填充它，而第二个版本接收一个Class对象，一个Generator
+    和所需的元素数量，然后创建一个新数组，并使用所接收的Generator来填充它。注意，这个工具只能产生Object
+    子类型的数组，而不能产生基本类型数组：Generated.java
+
+16.7 Arrays实用功能
+    在java.util类库中可以找到Arrays类，它有一套用于数组的static实用方法，其中有六个基本方法：equals()
+用于比较两个数组是否相等（deepEquals()用于多维数组）；fill()用于填充数组，对象的引用；sort()用于对数组排序；binarySearch()
+用于在已经排序的数组中查找元素；toString()产生数组的String表示；hashCode()
+产生数组的散列码。所有这些方法对各种基本类型和Object类而重载过。此外，Arrays.aslist()
+接受任意的序列或数组作为其参数，并将其转变为List容器。
+    在讨论Arrays的方法之前，我们先看看另一个不属于Arrays但很有用的方法。
+
+16.7.1 复制数组
+        Java标准类库提供有static方法System.arraycopy()，用它复制数组比用for循环复制要快很多。System.arraycopy()
+    针对所有类型做了重载。下面的例子就是用来处理int数组的：CopyingArrays.java
