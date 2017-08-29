@@ -1,0 +1,29 @@
+第17章 容器深入研究
+17.1 完整的容器分类法
+下图是集合类更完整的图：Collection.puml
+
+17.2 填充容器
+    容器的填充仍然像java.util.Arrays面临同样的不足。就像Arrays一样，相应的Collections类也有一些使用的static方法，其中包括
+fill()。与Arrays版本一样，此fill()方法也是只复制同一个对象引用来填充整个容器的，并且只对List对象有用，但是所产生的列表可以
+传递给构造器或addAll()方法：StringAddress.java
+
+17.2.1 一种Generator解决方案
+ 事实上，所有的Collection子类型都有一个接收另一个Collection对象的构造器，用所接收的Collection
+ 对象中的元素来填充新的容器。为了更加容易地创建测试数据，我们需要做的是构建接收Generator和quantity
+ 数值并将它们作为构造器参数的类：CollectionData.java
+
+ 17.2.2 Map生成器
+    我们可以对Map使用相同的方式，但是这需要有一个Pair类，因为为了组装Map，每次调用Generator的next()
+方法都必须产生一个对象对（键值对）：Pair.java Map适配器现在可以使用各种不同的Generator、Iterator和常量值的组合来填充Map
+初始化对象。MapData.java
+
+17.2.3 使用Abstract类
+    对于产生用于容器的测试数据问题，另一种解决方式是创建定制的Collection和Map实现。每个java
+.util容器都有其自己的Abstract类，它们提供了该容器的部分实现，因此你必须做的只是去实现哪些产生想要的
+容器所必需的方法。如果所产生的容器是只读的，就像它通常用的测试数据那样，那么你需要提供的方法数量将减到最少。
+    另一种设计模式：享元。可以在普通的解决方案需要过多的对象，或者产生普通对象太占用空间时使用享元。享元模式使得对象的一部分可以被具体化，因此，与对象中的所有
+事物都包含在对象内部不同，我们可以在更加高效的外部表中查找对象的一部分或整体（或者通过某些其他节省空间的计算来产生对象的一部分或整体）。
+    这个示例的关键之处在于演示通过继承java.util.Abstract来创建定制的Map和Collection到底有多简单。为了创建只读Map
+，可以继承AbstractMap并实现entrySet()。为了创建只读的Set,可以继承AbstractSet并实现iterator和size()。
+    本例中使用的数据集是由世界上国家以及它们的首都构成的Map。capitals()方法产生国家与首都的Map,name()
+方法产生国名list。在两种情况中，都可以通过提供表所需尺寸的int参数来获取部分列表：Countries.java

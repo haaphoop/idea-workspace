@@ -1,0 +1,85 @@
+@startuml
+
+interface Iterator
+interface Collection
+interface List
+abstract class AbstractList
+abstract class AbstractCollection
+interface ListIterator
+class Vector{
+}
+class Stack{
+}
+class ArrayList{
+}
+abstract class AbstractSequentialList
+class LinkedList{
+}
+
+Collection <|-- List
+Iterator <|-- ListIterator
+ListIterator <|-- List
+Collection <|-- AbstractCollection
+List <|-- AbstractList
+AbstractCollection <|-- AbstractList
+AbstractList <|-- Vector
+Vector <|-- Stack
+AbstractList <|-- ArrayList
+AbstractList <|-- AbstractSequentialList
+AbstractSequentialList <|-- LinkedList
+
+interface Set
+interface SortedSet
+abstract AbstractSet
+class TreeSet{
+}
+class HashSet{
+}
+class LinkedHashSet{
+}
+
+Collection <|-- Set
+Set <|-- SortedSet
+Set <|-- AbstractSet
+AbstractCollection <|-- AbstractSet
+SortedSet <|-- TreeSet
+AbstractSet <|-- TreeSet
+AbstractSet <|-- HashSet
+HashSet <|-- LinkedHashSet
+
+interface Queue
+Collection <|-- Queue
+
+interface Map
+abstract AbstractMap
+interface SortedMap
+class HashMap{
+}
+class LinkedHashMap{
+}
+class WeakHashMap{
+}
+class HashTable{
+}
+class IdentityHashMap{
+}
+class TreeMap{
+}
+
+Map <|-- AbstractMap
+Map <|-- SortedMap
+AbstractMap <|-- HashMap
+HashMap <|-- LinkedHashMap
+AbstractMap <|-- WeakHashMap
+AbstractMap <|-- HashTable
+AbstractMap <|-- IdentityHashMap
+AbstractMap <|-- TreeMap
+SortedMap <|-- TreeMap
+
+interface Comparable
+interface Comparator
+class Collections{
+}
+class Arrays{
+}
+@enduml
