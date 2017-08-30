@@ -27,3 +27,6 @@ fill()。与Arrays版本一样，此fill()方法也是只复制同一个对象�
 ，可以继承AbstractMap并实现entrySet()。为了创建只读的Set,可以继承AbstractSet并实现iterator和size()。
     本例中使用的数据集是由世界上国家以及它们的首都构成的Map。capitals()方法产生国家与首都的Map,name()
 方法产生国名list。在两种情况中，都可以通过提供表所需尺寸的int参数来获取部分列表：Countries.java
+
+17.3 Collection的功能方法
+CollectionMethods.java
