@@ -90,3 +90,60 @@ BufferedInputFile.java
 恢复数据。当然，这些流可以是任何形式，但在下面的示例中使用的是一个文件，并且对于读和写都进行了缓冲处理。注意DataOutputStream
 和DataInputStream是面向字节的，因此要使用InputStream和OutputStream。StoringAndRecoveringData
 .java
+
+18.6.6 读写随机访问文件
+    使用RandomAccessFile，类似于组合使用了DataInputStream和DataOutputStream
+    （因为它实现了相同的接口：DataInput和DataOutput）。另外我们可以看到，利用seek()可以在文件中到处移动，并修改文件中的某个值。
+     在使用RandomAccessFile时，你必须知道文件排版，这样才能正确地操作它。RandomAccessFile拥有读取基本类型个UTF-8
+     字符串的各种具体方法。下面是示例：UsingRandomAccessFile.java
+
+ 18.6.7 管道流
+    PipedInputStream、PipedOutputStream、PipedReader及PipedWriter
+    在本章只是简单地提到。但这并不表明它们没有什么用处，它们的价值只有在我们开始理解多线程之后才会显现，因为管道流用于任务之间的通信。
+
+18.7 文件读写的实用工具
+    一个很常见的程序化任务就是读取文件到内存，修改，然后再写出。Java I/O类库的问题之一就是：它需要编写相当多的代码去执行这些常用操作--没有任何
+基本的帮助功能可以为我们做这一切。更糟糕的是，装饰器会使得要记住如何打开文件变成一件相当困难的事。因此，在我们的类库中添加帮助就显得相当有意义，
+这样就可以很容易地为我们完成这些基本任务。Java
+SE5在PrintWriter
+中添加了方便的构造器，因此你可以很方便地打开一个文本文件进行写入操作。但是，还有许多其他的常见操作是你需要反复执行的，这就使得消除与
+这些任务相关联的重复代码就显得很有意义了。
+    下面的TextFile类在本书前面的示例中就已经被用来简化对文件的读写操作了。它包含的static
+    方法可以像简单字符串那样读写文本文件，并且我们可以创建一个TextFile对象，它用一个ArrayList
+    来保存文件的若干行（如此，当我们操纵文件内容时，就可以实用ArrayList的所有功能）。TextFile.java
+
+18.7.1 读取二进制文件
+
+18.8 标准I/O
+    标准I/O这个术语参考的是Unix
+    中“程序所使用的单一信息流”这个概念。程序的所有输入都可以来自于标准输入，它的所有输出也都可以发送到标准输出，以及所有的
+错误信息都可以发送到标准错误。标准I/O的意义在于：我们可以很容易地把程序串联起来，一个程序的标准输出可以成为另一程序的标准输入。这真是一个强大的工具。
+
+18.8.1 从标准输入中读取
+    按照标准I/O模型，Java提供了System.in、System.out和System.err。在整本书里我们已经看到了怎样用System
+    .out将数据写出到标准输出，其中System.out已经事先被包装成了printStream对象。System
+    .err同样也是PrintStream，但System
+    .in却是一个没有被包装过的未经加工的InputStream。这意味尽管我们可以立即使用System.out和System
+    .err，但是在读取System.in之前必须对其进行包装。
+    通常我们会用readLine()一次一行地读取输入，为此，我们将System
+    .in包装成BufferedReader来使用这要求我们必须用InputStreamReader把System.in转换成Reader。Echo
+    .java
+
+18.8.2 将System.out转换成PrintStream
+    System.out是一个PrintStream，而PrintStream是一个OutputStream。PrintWriter
+    有一个可以接受OutputStream作为参数的构造器。因此，只要需要，就可以使用那个构造器把System
+    .out转换成PrintWriter：ChangeSystemOut.java
+
+18.8.3 标准I/O重定向
+    Java的System类提供了一些简单的静态方法调用，以允许我们对标准输入、输出和错误I/O流进行重定向：
+        setIn(InputStream)
+        setOut(PrintStream)
+        setErr(PrintStream)
+        如果我们突然开始在显示器上创建大量输出，而这些输出滚动得太快以至于无法阅读时，重定向输出就显得极为有用。对于我们想
+        重复测试某个特定用户的输入序列的命令行程序来说，重定向输入就很有价值。下例简单演示了这些方法的使用：Redirecting.java
+
+18.9 进程控制
+    你经常会需要在Java内部执行其他操作系统的程序，并且要控制这些程序的输入和输出。Java类库提供了执行这些操作的类。
+    一项常见的任务是运行程序，并将产生的输出发送到控制台。本节包含了一个可以简化这项任务的实用工具。在使用这个实用工具时，可能会产生
+两种类型的错误：普通的导致异常的错误---对这些错误我们只需重新抛出一个运行时异常，以及从进程自身的执行过程中产生的错误，我们希望用单独的异常来报告这些错误：
+OSExecuteException.java
