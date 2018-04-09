@@ -6,6 +6,9 @@ package com.company.datastructure;
 public class DefaultStrategy implements Strategy {
     @Override
     public boolean equal(Object obj1, Object obj2) {
+        if (obj1.equals(obj2)) {
+            return true;
+        }
         return false;
     }
 

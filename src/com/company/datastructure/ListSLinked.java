@@ -89,11 +89,26 @@ public class ListSLinked implements List {
     public void insert(int i, Object e) throws OutOfBoundaryException {
         if (i<0 || i>size)
             throw new OutOfBoundaryException("错误，指定的插入序号越界。");
-        SLNode p = getNode(i);
-        SLNode q = new SLNode(e, p.getNext());
-        p.setNext(q);
+        if (i == 0) {
+            SLNode q = new SLNode(e, this.head.getNext());
+            this.head.setNext(q);
+        } else {
+            SLNode p = getNode(i);
+            SLNode q = new SLNode(e, p.getNext());
+            p.setNext(q);
+        }
         size++;
         return ;
+    }
+
+    public void add(Object e) {
+        SLNode p = this.head;
+        while (p.getNext() != null) {
+            p = p.getNext();
+        }
+        SLNode q= new SLNode(e, null);
+        p.setNext(q);
+        size++;
     }
 
     @Override
@@ -160,5 +175,25 @@ public class ListSLinked implements List {
             throw new OutOfBoundaryException("");
         SLNode p = getNode(i);
         return p.getNext();
+    }
+
+    @Override
+    public String toString() {
+        SLNode p = this.head.getNext();
+        while (p != null) {
+            System.out.println("data: "+ p.getData());
+            p = p.getNext();
+        }
+        return super.toString();
+    }
+
+    public static void main(String[] args) throws OutOfBoundaryException{
+        ListSLinked listSLinked = new ListSLinked(new DefaultStrategy());
+        for (int i = 0; i < 10; i++) {
+            listSLinked.add(i);
+        }
+        listSLinked.insert(4, 44);
+        listSLinked.replace(0, 111);
+        listSLinked.toString();
     }
 }
