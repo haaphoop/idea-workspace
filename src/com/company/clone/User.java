@@ -1,6 +1,7 @@
 package com.company.clone;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -25,7 +26,6 @@ public class User implements Cloneable, Serializable {
         System.out.println(user.equals(user1));
         System.out.println(user == user2);
         System.out.println(user.equals(user2));
-
     }
 
     @Override
