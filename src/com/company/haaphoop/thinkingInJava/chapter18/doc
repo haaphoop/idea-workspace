@@ -9,6 +9,12 @@
 
 18.1.1 目录列表器
     假设我们想查看一个目录列表，可以用两种方法来使用File对象。如果我们调用不带参数的list()方法，便可以获得此File对象包含的全部列表。然而，如果我们想获得一个受限列表，例如，想得到所有扩展名为.java的文件，那么我们就要用到"目录过滤器"，这个类会告诉我们怎样显示符合条件的File对象。
+=======
+18.1.1 目录列表器
+    示例：注意，通过使用java.util.Arrays.sort()和String.CASE_INSENSITIVE
+    .ORDERComparator可以很容易地对结果进行排序（按字母顺序）。DirList.java
+
+>>>>>>> origin/master
 18.1.2 目录实用工具
     程序设计中一项常见的任务就是在文件集上执行操作，这些文件要么在本地目录中，
 要么遍布于整个目录树中。如果有一种工具能够为你产生这个文件集，那么它会非常有用。
@@ -71,4 +77,111 @@ filter类中。
 。为了提高速度，我们希望对那个文件进行缓冲，那么我们将所产生的引用传给一个BufferedReader构造器。由于BufferedReader
 也提供readLine()方法，所以这是我们的最终对象和进行读取的接口。当readLine()将返回null时，你就达到了文件的末尾。
 BufferedInputFile.java
+<<<<<<< HEAD
 
+=======
+18.6.2 从内存输入
+    下面的示例中，从BufferedInputFile.read()读入的String结果被用来创建一个StringReader。然后调用read()
+每次读取一个字符，并把它发送到控制台。MemoryInput.java
+
+18.6.3 格式化的内存输入
+    要读取格式化数据，可以使用DataInputStream，它是一个面向字节的I/O类。因此我们必须使用InputStream类而不是Reader
+类。当然，我们可以用InputStream以字节的形式读取任何数据，不过，在这里使用的是字符串。FormattedMemoryInput.java
+    如果我们从DataInputStream用readByte()一次一个字节地读取字符，那么任何字节的值都是合法的结果，因此返回值不能用来
+检测输入是否结束。相反，我们可以使用available()方法查看还有多少可供存取的字符。下面这个例子演示了怎样一次一个字节地读取文件：TestEOF.java
+
+18.6.4 基本的文件输出
+    FileWriter对象可以向文件写入数据。首先，创建一个与指定文件连接的FileWriter。实际上，我们通常会用BufferedWriter
+将其包装起来用以缓冲输出（尝试移除此包装来感受对性能的影响---缓冲往往能显著地增加I/O操作的性能）。在本例中，为了提供格式化机制，它被装饰
+成了PrintWriter。按照这种方式创建的数据文件可作为普通文本文件读取。BasicFileOutput.java
+    文本文件输出的快捷方式
+    Java SE5在PrintWriter
+    中添加了一个辅助构造器，使得你不必在每次希望创建文本文件并向其中写入时，都去执行所有的装饰工作。下面是用这种快捷方式重写的BasicFileOutput
+    .java
+
+18.6.5 存储和恢复数据
+    PrintWriter可以对数据进行格式化，以便人们的阅读。但是为了输出可供另一个"流"恢复的数据，我们需要用DataOutputStream
+写入数据，并用DataInputStream
+恢复数据。当然，这些流可以是任何形式，但在下面的示例中使用的是一个文件，并且对于读和写都进行了缓冲处理。注意DataOutputStream
+和DataInputStream是面向字节的，因此要使用InputStream和OutputStream。StoringAndRecoveringData
+.java
+
+18.6.6 读写随机访问文件
+    使用RandomAccessFile，类似于组合使用了DataInputStream和DataOutputStream
+    （因为它实现了相同的接口：DataInput和DataOutput）。另外我们可以看到，利用seek()可以在文件中到处移动，并修改文件中的某个值。
+     在使用RandomAccessFile时，你必须知道文件排版，这样才能正确地操作它。RandomAccessFile拥有读取基本类型个UTF-8
+     字符串的各种具体方法。下面是示例：UsingRandomAccessFile.java
+
+ 18.6.7 管道流
+    PipedInputStream、PipedOutputStream、PipedReader及PipedWriter
+    在本章只是简单地提到。但这并不表明它们没有什么用处，它们的价值只有在我们开始理解多线程之后才会显现，因为管道流用于任务之间的通信。
+
+18.7 文件读写的实用工具
+    一个很常见的程序化任务就是读取文件到内存，修改，然后再写出。Java I/O类库的问题之一就是：它需要编写相当多的代码去执行这些常用操作--没有任何
+基本的帮助功能可以为我们做这一切。更糟糕的是，装饰器会使得要记住如何打开文件变成一件相当困难的事。因此，在我们的类库中添加帮助就显得相当有意义，
+这样就可以很容易地为我们完成这些基本任务。Java
+SE5在PrintWriter
+中添加了方便的构造器，因此你可以很方便地打开一个文本文件进行写入操作。但是，还有许多其他的常见操作是你需要反复执行的，这就使得消除与
+这些任务相关联的重复代码就显得很有意义了。
+    下面的TextFile类在本书前面的示例中就已经被用来简化对文件的读写操作了。它包含的static
+    方法可以像简单字符串那样读写文本文件，并且我们可以创建一个TextFile对象，它用一个ArrayList
+    来保存文件的若干行（如此，当我们操纵文件内容时，就可以实用ArrayList的所有功能）。TextFile.java
+
+18.7.1 读取二进制文件
+
+18.8 标准I/O
+    标准I/O这个术语参考的是Unix
+    中“程序所使用的单一信息流”这个概念。程序的所有输入都可以来自于标准输入，它的所有输出也都可以发送到标准输出，以及所有的
+错误信息都可以发送到标准错误。标准I/O的意义在于：我们可以很容易地把程序串联起来，一个程序的标准输出可以成为另一程序的标准输入。这真是一个强大的工具。
+
+18.8.1 从标准输入中读取
+    按照标准I/O模型，Java提供了System.in、System.out和System.err。在整本书里我们已经看到了怎样用System
+    .out将数据写出到标准输出，其中System.out已经事先被包装成了printStream对象。System
+    .err同样也是PrintStream，但System
+    .in却是一个没有被包装过的未经加工的InputStream。这意味尽管我们可以立即使用System.out和System
+    .err，但是在读取System.in之前必须对其进行包装。
+    通常我们会用readLine()一次一行地读取输入，为此，我们将System
+    .in包装成BufferedReader来使用这要求我们必须用InputStreamReader把System.in转换成Reader。Echo
+    .java
+
+18.8.2 将System.out转换成PrintStream
+    System.out是一个PrintStream，而PrintStream是一个OutputStream。PrintWriter
+    有一个可以接受OutputStream作为参数的构造器。因此，只要需要，就可以使用那个构造器把System
+    .out转换成PrintWriter：ChangeSystemOut.java
+
+18.8.3 标准I/O重定向
+    Java的System类提供了一些简单的静态方法调用，以允许我们对标准输入、输出和错误I/O流进行重定向：
+        setIn(InputStream)
+        setOut(PrintStream)
+        setErr(PrintStream)
+        如果我们突然开始在显示器上创建大量输出，而这些输出滚动得太快以至于无法阅读时，重定向输出就显得极为有用。对于我们想
+        重复测试某个特定用户的输入序列的命令行程序来说，重定向输入就很有价值。下例简单演示了这些方法的使用：Redirecting.java
+
+18.9 进程控制
+    你经常会需要在Java内部执行其他操作系统的程序，并且要控制这些程序的输入和输出。Java类库提供了执行这些操作的类。
+    一项常见的任务是运行程序，并将产生的输出发送到控制台。本节包含了一个可以简化这项任务的实用工具。在使用这个实用工具时，可能会产生
+两种类型的错误：普通的导致异常的错误---对这些错误我们只需重新抛出一个运行时异常，以及从进程自身的执行过程中产生的错误，我们希望用单独的异常来报告这些错误：
+OSExecuteException.java
+
+18.10 新I/O
+JDK 1.4 的java.nio.*包中引入了新的Java
+I/O类库，其目的在于提高速度。实际上，旧的I/O包已经使用nio重新实现过，以便充分利用这种速度提高，因此，即使我们不显式地用nio
+编写代码，也能从中受益。速度的提高在文件I/O和网络I/O中都有可能发生，我们在这里只研究前者，对于后者，在Thinking in Enterprise
+Java中有论述。
+    速度的提高来自于所使用的结构更接近于操作系统执行I/O
+    的方式：通道和缓冲器。我们可以把它想象成一个煤矿，通道是一个包含煤层（数据）的矿藏，而缓冲器则是派送到狂藏的卡车。卡车载满煤炭而归，我们再从卡车上获得煤炭。也就是说，我们并没有直接和通道交互；
+我们只是和缓冲器交互，并把缓冲器派送到通道。通道要么从缓冲器获得数据，要么向缓冲器发送数据。
+    唯一直接与通道交互的缓冲器是ByteBuffer---也就是说，可以存储未加工字节的缓冲器。当我们查询JDK文档中的java.nio.ByteBuffer时
+会发现它是相当基础的类：通过告知分配多少存储空间来创建一个ByteBuffer
+对象，并且还有一个方法选择集，用于以原始的字节形式或基本数据类型输出和读取数据。但是，没办法输出或读取对象，即使是字符串对象也不行。这种处理虽然很低级，但却正好，
+因为这是大多数操作系统中更有效的映射方式。
+    旧I/O类库中有三个类被修改了，用以产生FileChannel。这三个被修改的类是FileInputStream、FileOutputStream
+ 以及用于既读又写的RandomAccessFile。注意这些是字节操纵流，与低层的nio性质一致。Reader和Writer
+ 这种字符模式类不能用于产生通道；但是java.nio.channels.Channels类提供了实用方法，用以在通道中产生Reader和Writer。
+ GetChannel.java
+
+18.10.1 转换数据
+    回过头看GetChannel.java这个程序就会发现，为了输出文件中的信息，我们必须每次只读取一个字节的数据，然后将每个byte类型强制转换成char
+类型。这种方法似乎有点原始---如果我们查看一下java.nio.CharBuffer这个类，将会发现它有一个toString()
+方法是这样定义的：“返回一个包含缓冲器中所有字符的字符串。”既然ByteBuffer可以看作是具有asCharBuffer()
+方法的CharBuffer，那么为什么不用它呢？正如下面的输出语句中第一行所见，这种方法并不能解决问题：BufferToText.java
