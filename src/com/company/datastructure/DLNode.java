@@ -34,6 +34,10 @@ public class DLNode implements Node {
         this(null, null, null);
     }
 
+    public DLNode(Object e) {
+        this(e, null, null);
+    }
+
     public DLNode(Object element, DLNode pre, DLNode next) {
         this.element = element;
         this.pre = pre;
