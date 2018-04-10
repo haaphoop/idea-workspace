@@ -136,7 +136,7 @@ public class LinkedListDLNode implements LinkedList {
     }
 
     @Override
-    public Iterator elements() {
+    public Iterator elements() throws OutOfBoundaryException{
         return new LinkedListIterator(this);
     }
 }

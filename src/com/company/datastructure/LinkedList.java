@@ -33,5 +33,5 @@ public interface LinkedList {
     // 将处于给定位置的元素替换为新元素，并返回被替换的元素
     Object replace(Node p, Object e) throws InvalidNodeException;
     // 元素迭代器
-    Iterator elements();
+    Iterator elements()throws OutOfBoundaryException;
 }
