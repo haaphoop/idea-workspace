@@ -220,8 +220,8 @@ public class SingleList {
      * 合并两个有序链表 :两个列表循环和递归实现
      */
     public SLNode merge(SLNode p1, SLNode p2) {
-        sorted(p1);
-        sorted(p2);
+        //sorted(p1);
+        //sorted(p2);
         SLNode dump = new SLNode(0);
         SLNode p3 = p1, p4=p2, temp = dump;
         while (p3 != null && p4 != null) {
@@ -234,10 +234,10 @@ public class SingleList {
             }
             temp = temp.getNext();
         }
-        if (p3 == null) {
-            temp.setNext(p4);
-        }  else {
+        if (p3 != null) {
             temp.setNext(p3);
+        }  else {
+            temp.setNext(p4);
         }
         return dump.getNext();
     }
