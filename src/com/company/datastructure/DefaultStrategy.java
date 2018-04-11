@@ -14,6 +14,8 @@ public class DefaultStrategy implements Strategy {
 
     @Override
     public int compare(Object obj1, Object obj2) {
-        return 0;
+        Integer integer1 = (Integer) obj1;
+        Integer integer2 = (Integer) obj2;
+        return integer1.compareTo(integer2);
     }
 }
