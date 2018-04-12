@@ -50,4 +50,14 @@ public class ArrayStack implements Stack {
             throw new StackEmptyException("");
         return elements[top];
     }
+
+    public void print(){
+        try {
+            while (!isEmpty())
+                System.out.print(pop().toString() + ":");
+        } catch (StackEmptyException e) {
+
+        }
+        System.out.println();
+    }
 }
