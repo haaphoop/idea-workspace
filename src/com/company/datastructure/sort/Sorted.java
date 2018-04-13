@@ -17,21 +17,27 @@ public class Sorted<T> {
     public static void main(String[] args) {
         Sorted<Integer> sorted = new Sorted<Integer>();
         Integer[] integers = new Integer[8];
-        integers[0] = 26;
-        integers[1] = 53;
-        integers[2] = 48;
-        integers[3] = 11;
-        integers[4] = 13;
-        integers[5] = 48;
-        integers[6] = 32;
-        integers[7] = 15;
+        integers[0] = 34;
+        integers[1] = 2;
+        integers[2] = 1;
+        integers[3] = 14;
+        integers[4] = 5;
+        integers[5] = 16;
+        integers[6] = 7;
+        integers[7] = 3;
         System.out.println("排序前:");
         for (int i = 0; i < integers.length; i++) {
             System.out.print(integers[i]+":");
         }
         System.out.println();
-        sorted.binInsertSort(integers);
+        /*sorted.binInsertSort(integers);
         System.out.println("排序后:");
+        for (int i = 0; i < integers.length; i++) {
+            System.out.print(integers[i]+":");
+        }*/
+
+        System.out.println("快速排序后:");
+        sorted.quickSort(integers, 0, 7);
         for (int i = 0; i < integers.length; i++) {
             System.out.print(integers[i]+":");
         }
@@ -88,5 +94,65 @@ public class Sorted<T> {
                 ts[high+1] = temp;
             }
         }
+    }
+
+    /**
+     * 希尔排序
+     *
+     */
+    public void shellSort(T[] ts, int low, int high, int[] delta) {
+        for (int i = 0; i < delta.length; i++) {
+            shellInsert(ts, low, high, delta[i]);
+        }
+    }
+
+    private void shellInsert(T[] ts, int low, int high, int deltaK) {
+        for (int i = low+deltaK; i <= high; i++) {
+            if (strategy.compare(ts[i], ts[i-deltaK]) < 0) {
+                T temp = ts[i];
+                int j = i - deltaK;
+                for (; j>low && strategy.compare(temp, ts[j]) < 0 ; j=j - deltaK) {
+                    ts[j+deltaK] = ts[j];
+                }
+                ts[j+deltaK] = temp;
+            }
+        }
+    }
+
+    /**
+     * 冒泡排序
+     */
+    public void bubbleSort(T[] ts, int low, int high) {
+        int n = high - low + 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = low; j <= high-i; j++) {
+                if (strategy.compare(ts[j], ts[j+1]) > 0) {
+                    T temp = ts[j];
+                    ts[j] = ts[j+1];
+                    ts[j] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * 快速排序
+     */
+    public void quickSort(T[] ts, int low, int high) {
+        if (low >= high)
+            return;
+        T pivot = ts[low];
+        int currentLow = low, currentHigh = high;
+        while (currentLow < currentHigh) {
+            while (currentLow < currentHigh && strategy.compare(ts[currentHigh], pivot) >= 0)
+                currentHigh--;
+            ts[currentLow] = ts[currentHigh];
+            while (currentLow < currentHigh && strategy.compare(ts[currentLow], pivot) <= 0)
+                currentLow++;
+            ts[currentHigh] = ts[currentLow];
+        }
+        ts[currentLow] = pivot;
+        quickSort(ts, low, currentLow-1);
+        quickSort(ts, currentLow+1, high);
     }
 }
