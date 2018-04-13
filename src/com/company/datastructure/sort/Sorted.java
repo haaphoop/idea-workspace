@@ -36,8 +36,14 @@ public class Sorted<T> {
             System.out.print(integers[i]+":");
         }*/
 
-        System.out.println("快速排序后:");
+        /*System.out.println("快速排序后:");
         sorted.quickSort(integers, 0, 7);
+        for (int i = 0; i < integers.length; i++) {
+            System.out.print(integers[i]+":");
+        }*/
+
+        System.out.println("简单选择排序后:");
+        sorted.selectedSort(integers);
         for (int i = 0; i < integers.length; i++) {
             System.out.print(integers[i]+":");
         }
@@ -154,5 +160,26 @@ public class Sorted<T> {
         ts[currentLow] = pivot;
         quickSort(ts, low, currentLow-1);
         quickSort(ts, currentLow+1, high);
+    }
+
+    /**
+     * 简单选择排序
+     * @param ts
+     */
+    public void selectedSort(T[] ts) {
+        for (int i = 0; i < ts.length; i++) {
+            int temp = i, j = i+1;
+            while (j < ts.length) {
+                if (strategy.compare(ts[temp], ts[j]) > 0){
+                    temp = j;
+                }
+                j++;
+            }
+            if (i != temp) {
+                T t = ts[temp];
+                ts[temp] = ts[i];
+                ts[i] = t;
+            }
+        }
     }
 }
