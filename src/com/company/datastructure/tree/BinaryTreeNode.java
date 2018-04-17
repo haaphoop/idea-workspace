@@ -1,5 +1,9 @@
 package com.company.datastructure.tree;
 
+import com.company.datastructure.stack.LinkedStack;
+import com.company.datastructure.stack.Stack;
+import com.company.datastructure.stack.StackEmptyException;
+
 public class BinaryTreeNode implements Node {
     private Object data;
     private BinaryTreeNode parent;
@@ -91,4 +95,142 @@ public class BinaryTreeNode implements Node {
         this.parent = null; // 设置当前节点为根
     }
 
+    /** 与lChild相关的方法 */
+    public BinaryTreeNode getlChild() {return lChild;}
+
+    /** 设置当前节点的左孩子，返回原左孩子*/
+    public BinaryTreeNode setLChild(BinaryTreeNode lc) {
+        BinaryTreeNode oldLChild = lChild;
+        if (hasLChild())
+            lChild.sever();
+        if (lc != null) {
+            lc.sever();
+            lChild = lc;
+            lc.parent = this;
+            this.updateHeight();
+            this.updateSize();
+        }
+        return oldLChild;
+    }
+
+    /**
+     * 与rChild相关的方法
+     */
+    public BinaryTreeNode getrChild() {return rChild;}
+
+    /** 设置当前节点的右孩子，返回原右孩子*/
+    public BinaryTreeNode setRChild(BinaryTreeNode rc) {
+        BinaryTreeNode oldRChild = rChild;
+        if (hasRChild())
+            rChild.sever();
+        if (rc != null) {
+            rc.sever();
+            rChild = rc;
+            rc.parent = this;
+            this.updateHeight();
+            this.updateSize();
+        }
+        return oldRChild;
+    }
+
+    /**
+     * 树的遍历:先序遍历、中序遍历、后序遍历 递归算法
+     */
+    // 先序遍历
+    public void preOrder(BinaryTreeNode treeNode) {
+        if (treeNode == null)
+            return;
+        System.out.println(this.data);
+        preOrder(this.lChild);
+        preOrder(this.rChild);
+    }
+
+    // 中序遍历
+    public void inOrder(BinaryTreeNode treeNode) {
+        if (treeNode == null)
+            return;
+        inOrder(this.lChild);
+        System.out.println(this.data);
+        inOrder(this.rChild);
+    }
+
+
+    // 后序遍历
+    public void postOrder(BinaryTreeNode treeNode) {
+        if (treeNode == null)
+            return;
+        postOrder(this.lChild);
+        postOrder(this.rChild);
+        System.out.println(this.data);
+    }
+
+    // 先序遍历 非递归形式
+    public void preOrderTraverse(BinaryTreeNode treeNode)  throws StackEmptyException {
+        if (treeNode == null)
+            return;
+        BinaryTreeNode t = treeNode;
+        Stack stack = new LinkedStack();
+        while (t != null) {
+            while (t != null) { // 向左走到尽头
+                System.out.println(t.data); // 访问根节点
+                if (t.hasRChild()) stack.push(t.rChild); // 如果存在右孩子，则右孩子入栈
+                t = t.lChild;
+            }
+            if (!stack.isEmpty())
+                t = (BinaryTreeNode)stack.pop(); // 遍历右孩子节点
+        }
+    }
+
+    // 中序遍历 非递归形式
+    public void inOrderTraverse(BinaryTreeNode treeNode)  throws StackEmptyException {
+        if (treeNode == null)
+            return;
+        BinaryTreeNode t = treeNode;
+        Stack stack = new LinkedStack();
+        while (t != null || !stack.isEmpty()) {
+            while (t != null) { // 向左走到尽头
+                stack.push(t);
+                t = t.lChild;
+            }
+            if (!stack.isEmpty()) {
+                t = (BinaryTreeNode)stack.pop(); // 遍历右孩子节点
+                System.out.println(t.data);
+                t = t.rChild;
+            }
+        }
+    }
+
+    // 后序遍历 非递归形式
+    public void postOrderTraverse(BinaryTreeNode treeNode)  throws StackEmptyException {
+        if (treeNode == null)
+            return;
+        BinaryTreeNode t = treeNode;
+        Stack stack = new LinkedStack();
+        while (t != null || !stack.isEmpty()) {
+            while (t != null) { // 向左走到尽头
+                stack.push(t);
+                if (t.hasLChild()) t = t.lChild;
+                else {
+                    t = t.rChild;
+                }
+            }
+            if (!stack.isEmpty()) {
+                t = (BinaryTreeNode)stack.pop();
+                System.out.println(t.data);
+            }
+
+            // 满足条件时，说明栈顶节点右子树已访问，应出栈访问
+            while (!stack.isEmpty() && ((BinaryTreeNode)stack.peek()).getrChild() == t) {
+                System.out.println(t.data);
+                t = (BinaryTreeNode)stack.pop();
+            }
+
+            // 转向栈顶根节点的右子树继续后续遍历
+            if (!stack.isEmpty()) {
+                t = ((BinaryTreeNode)stack.peek()).getrChild();
+            } else {
+                t = null;
+            }
+        }
+    }
 }
