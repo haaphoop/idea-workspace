@@ -52,4 +52,34 @@ public class Vertex {
             return reAdjacentEdges.getSize();
     }
 
+    // 获取与顶点关联的边
+    public LinkedList getAdjacentEdges() {
+        return adjacentEdges;
+    }
+    public LinkedList getReAdjacentEdges() {
+        if (isUnDiGraphNode())
+            return adjacentEdges;// 无向图顶点的逆邻接边表就是其邻接边表
+        else
+            return reAdjacentEdges;
+    }
+
+    // 取顶点在所属图顶点集中的位置
+    public Node getVexPosition() {
+        return vexPosition;
+    }
+
+    // 与顶点访问状态相关方法
+    public boolean isVisited() {return visited;}
+    public void setToVisited() {this.visited = true; }
+    public void setToUnvisited() {this.visited = false; }
+
+    // 取或设置顶点应用信息
+    protected Object getApplication() {return application;}
+    protected void setApplication(Object app) {this.application = app; }
+
+    // 重置顶点状态信息
+    public void resetStatus() {
+        visited = false;
+        application = null;
+    }
 }
