@@ -3,6 +3,7 @@ package com.company.unsafe;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -16,7 +17,16 @@ public class UnsafeTest {
         theUnsafe.setAccessible(true);
         Unsafe UNSAFE = (Unsafe)theUnsafe.get(null);
         System.out.println(UNSAFE);
-        Field f = null;
+        AtomicInteger integer = new AtomicInteger(0);
+        integer.getAndAdd(0x61c88647);
+        System.out.println(integer);
+        integer.getAndAdd(0x61c88647);
+        System.out.println(integer);
+        integer.getAndAdd(0x61c88647);
+        System.out.println(integer);
+        integer.getAndAdd(0x61c88647);
+        System.out.println(integer);
+       /* Field f = null;
         try {
             f = Sampleclass.class.getDeclaredField("i");
         } catch (NoSuchFieldException e) {
@@ -34,7 +44,7 @@ public class UnsafeTest {
         for(int i=0;i<100000000;i++){
             UNSAFE.putInt(sampleclass, ageOffset, i);
         }
-        System.out.println(System.currentTimeMillis()-s2);
+        System.out.println(System.currentTimeMillis()-s2);*/
 /*
 
 

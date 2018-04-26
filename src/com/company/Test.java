@@ -2,6 +2,7 @@ package com.company;
 
 import sun.misc.Unsafe;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
