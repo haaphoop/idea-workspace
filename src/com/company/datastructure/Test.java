@@ -64,23 +64,38 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
+        /*ListNode head = new ListNode(1);
 
         ListNode qq = head;
         head.next = new ListNode(2);
         qq.next = new ListNode(5);
-        /*
+        *//*
         head.next.next = new ListNode(1);
         head.next.next.next = new ListNode(1);
         head.next.next.next.next = new ListNode(1);
         head.next.next.next.next.next = new ListNode(1);
-        head.next.next.next.next.next.next = new ListNode(2);*/
+        head.next.next.next.next.next.next = new ListNode(2);*//*
         Test test = new Test();
         //ListNode tt = test.delete(head);
         while (head != null) {
             System.out.println(head.val);
             head = head.next;
+        }*/
+
+        StringBuffer str = new StringBuffer("hello world");
+        System.out.println(replaceSpace(str));
+    }
+
+
+    public static String replaceSpace(StringBuffer str) {
+        if (str == null)
+            return null;
+        for (int i=0; i<str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                str.replace(i, i+1, "%20");
+            }
         }
+        return str.toString();
     }
 }
 

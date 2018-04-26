@@ -1,6 +1,6 @@
 package com.company.strategy;
 
-import dsa.element.Student;
+import com.company.element.Student;
 
 public class StudentStrategy implements Strategy {
 	

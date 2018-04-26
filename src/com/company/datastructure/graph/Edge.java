@@ -1,8 +1,8 @@
 package com.company.datastructure.graph;
 
-import com.company.datastructure.InvalidNodeException;
-import com.company.datastructure.Node;
-import com.company.datastructure.OutOfBoundaryException;
+import com.company.datastructure.*;
+
+import java.util.Iterator;
 
 public class Edge {
     public static final int NORMAL = 0;
