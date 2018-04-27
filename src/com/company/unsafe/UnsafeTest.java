@@ -2,7 +2,10 @@ package com.company.unsafe;
 
 import sun.misc.Unsafe;
 
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
@@ -10,6 +13,7 @@ import java.util.concurrent.locks.LockSupport;
  * Created by daishuli on 2018/4/25.
  */
 public class UnsafeTest {
+
     private static int byteArrayBaseOffset;
 
     public static void main(String[] args) throws NoSuchFieldException,IllegalAccessException {
@@ -110,5 +114,11 @@ public class UnsafeTest {
             e.printStackTrace();
         }
         return unsafe;
+    }
+
+    public Unsafe getUnsafe2() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException{
+        Constructor constructor = Unsafe.class.getDeclaredConstructor(new Class<?>[0]);
+        constructor.setAccessible(true);
+        return (Unsafe) constructor.newInstance(new Object[0]);
     }
 }
