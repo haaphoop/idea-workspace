@@ -48,8 +48,8 @@ public class WeakReferenceTest {
         object = null;
 
         System.out.println("Before GC: Weak Get= "+weakRef.get());
-        System.gc();
-        //byte[] b = new byte[5*1024*200000];
+        //System.gc();
+        byte[] b = new byte[5*1024*680];
         System.out.println("After GC: Weak Get= "+weakRef.get());
     }
 }

@@ -50,7 +50,5 @@ public class SoftReferenceTest {
         byte[] b = new byte[5*1024*680];
         System.out.println("After new byte[]:Soft Get= "+softReference.get());
         System.gc();
-
-
     }
 }

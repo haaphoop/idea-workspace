@@ -1,5 +1,7 @@
 package com.company.reference;
 
+import sun.misc.JavaLangAccess;
+
 import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
