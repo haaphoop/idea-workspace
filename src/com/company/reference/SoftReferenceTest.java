@@ -41,7 +41,6 @@ public class SoftReferenceTest {
     public static void main(String[] args) {
         MyObject object = new MyObject();
         SoftReference<MyObject> softReference = new SoftReference<MyObject>(object, queue);
-
         new Thread(new CheckRefQueue()).start();
         object = null;
         System.gc();
