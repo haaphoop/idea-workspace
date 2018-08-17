@@ -7,7 +7,7 @@ public class Test {
     public static void main(String[] args) {
         int a = -15, b=11;
         byte b1 = -128;
-        System.out.println(Integer.toBinaryString(-65536*(256*128)));
+        System.out.println(Integer.toBinaryString(-8>>1));
         System.out.println(Byte.toString(b1));
         System.out.println(~b);
         int n = 11;
